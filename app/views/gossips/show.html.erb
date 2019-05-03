@@ -1,0 +1,29 @@
+<div class="container">
+  <div class="card bg-light mb-3" style="max-width: 48rem;">
+    <div class="card-header">Potin n°<%=@gossip.id%> ! <br>
+      <Intitulé : <%=@gossip.title%>, créé le <%=@gossip.created_at%>,</div>
+      <div class="card-body">
+        <h5 class="card-title">Par <%= link_to @gossip.user.first_name + " " + @gossip.user.last_name, user_path(@gossip.user.id) %>,<br>
+          <%=@gossip.user.age%> ans</h5><br>
+          <p class="card-text"><%=@gossip.content%></p>
+        </div>
+      </div>
+    </div>
+
+    <% if current_user == @gossip.user %>
+    <a href="<%= edit_gossip_path(@gossip.id)%>" class="btn btn-primary">Editer le gossip</a>
+    <a href="<%= gossip_path(@gossip.id)%>" class="btn btn-danger" data-confirm= "Etes-vous sûr ?" data-method=DELETE>Supprimer le gossip</a>
+    <% end %>
+    <a href="<%= new_gossip_comment_path(@gossip)%>" class="btn btn-secondary" >Ajouter un commentaire</a>
+  </div>
+</div>
+
+<div class="list-group" style="max-width: 18rem;">
+  <%- @comments.sort_by{|c| c.created_at}.reverse.each do |comment| -%>
+  <div class="card">
+    <a href="<%= edit_gossip_comment_path(comment.id) %>">
+      <div class="card-body">
+        <p class="card-text"><%=comment.content %></p>
+        <p class="card-text"><small class="text-muted"><%=comment.user.first_name + " " + comment.user.last_name%>ajouté le <%=comment.created_at%></small></p>
+      </div>
+      <%- end -%>

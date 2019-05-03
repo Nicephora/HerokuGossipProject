@@ -1,0 +1,11 @@
+<div class="card bg-light mb-3" style="max-width: 18rem;">
+  <div class="card-header"><h4> Prénom : <%= @user.first_name %><h4>Nom : <%= @user.last_name%></h4></h4></div>
+  <div class="card-body">
+    <h5 class="card-title">E-mail : <%= @user.email%> <br><br>
+      Age : <%= @user.age %><br><br>
+
+      Inscrit(e) le : <%=@user.created_at%><br><br></h5>
+      <p class="card-text">Description : <%= @user.description%> </p>
+    </div>
+  </div>
+</div>

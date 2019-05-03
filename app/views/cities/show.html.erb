@@ -1,0 +1,13 @@
+<h2>Ville : <%= @city.name %><br><br></h2>
+<h2>Code Postal: <%= @city.zip_code %><br><br></h2>
+
+
+<%- @gossips.each do |gossip| -%>
+<div class="card bg-light mb-3" style="max-width: 18rem;">
+  <div class="card-body">
+    <h5 class="card-title">Titre :<%= link_to gossip.title, gossip_path(gossip.id) %></h5>
+    <p class="card-text">Auteur: <%= link_to gossip.user.first_name + " " + gossip.user.last_name.upcase, user_path(gossip.user.id) %>
+    </p>
+  </div>
+</div>
+<%- end -%>
