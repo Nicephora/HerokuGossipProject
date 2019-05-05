@@ -46,7 +46,9 @@
       <% if current_user %>
       <%= link_to('<button type="button">Se déconnecter</button>'.html_safe, session_path(session[:user_id]), method: :delete) %>
       <% else %>
-      <a href="<%=new_session_path%>" class="btn btn-outline-primary my-2 my-sm-0">Se connecter</a>
+      <div class="button-space">
+      <a href="<%=new_session_path%>" class="btn btn-outline-primary my-2 my-sm-1">Se connecter</a>
+      </div>
       <a href="<%=new_user_path%>" class="btn btn-outline-success my-2 my-sm-0">S'inscrire</a>
 
       <% end %>

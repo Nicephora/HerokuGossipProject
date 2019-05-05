@@ -13,3 +13,11 @@
  *= require_tree .
  *= require_self
  */
+
+ .button-space{
+    margin-right: 10px;
+}
+.center-create-gossip{
+    text-align: center;
+    padding: 30px;
+}

@@ -1,19 +1,27 @@
-<h1>The Gossip Book</h1>
-<% if current_user %>
-<h2>Bienvenue <%= current_user.first_name %> !</h2>
-<%- end -%>
-<h2>Voulez-vous ajouter un nouveau potin ? </h2>
-<a href="<%= new_gossip_path %>" class="btn btn-primary">Créer un potin</a>
 
-<%- @gossip_array.each do |gossip| -%>
-<div class ="card bg-light mb-3 mx-auto" style="max-width: 18rem;">
-  <div class="card-body">
-    <h5 class="card-title">Titre :<%= link_to gossip.title, gossip_path(gossip.id) %></h5>
-    <p class="card-text">Auteur: <%= link_to gossip.user.first_name + " " + gossip.user.last_name.upcase, user_path(gossip.user.id) %>
-    </p>
-    <small><%= gossip.comments.where(gossip: gossip).length%> commentaires</small><br>
-    <a href="<%= gossip_path(gossip.id)%>" class="btn btn-primary">Lire le gossip</a>
+
+<div class="jumbotron">
+  <div class="container">
+    <div class="d-flex justify-content-around">
+      <h1 class="display-3">The Gossip Book</h1>
+    </div>
+    <% if current_user %></p>
+    <h2>Bienvenue <%= current_user.first_name %> !</h2>
+    <%- end -%>
+    <div class="center-create-gossip">
+      <a href="<%= new_gossip_path %>" class="btn btn-primary btn-lg">Créer un potin</a>
+    </div>
   </div>
 </div>
 
-<%- end -%>
+<div class="d-flex justify-content-center">
+  <div class="row">
+    <%- @gossip_array.each do |gossip| -%>
+    <div class="col-md-4 col-lg-5 h-50">
+      <h2>Titre :<%= link_to gossip.title, gossip_path(gossip.id) %></h2>
+      <p>Auteur: <%= link_to gossip.user.first_name + " " + gossip.user.last_name.upcase, user_path(gossip.user.id) %><br><small><%= gossip.comments.where(gossip: gossip).length%> commentaires</small><br></p>
+      <p><a class="btn btn-secondary" <a href="<%= gossip_path(gossip.id)%>" role="button">Lire le gossip</a></p>
+    </div>
+    <%- end -%>
+  </div>
+</div>
